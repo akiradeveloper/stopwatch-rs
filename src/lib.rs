@@ -12,6 +12,7 @@ enum State {
 }
 use State::*;
 
+/// The stopwatch.
 pub struct StopWatch {
     start_time: Instant,
     state: State,
@@ -27,12 +28,12 @@ impl StopWatch {
     ///
     /// let mut sw = stopwatch_rs::StopWatch::start();
     /// sleep(Duration::from_secs(1));
-    /// let sp1 = sw.split(); // lap=1s, split=1s
+    /// let sp1 = sw.split(); // split=1s, lap=1s
     /// sw.suspend();
     /// sleep(Duration::from_secs(2));
     /// sw.resume();
     /// sleep(Duration::from_secs(4));
-    /// let sp2 = sw.split(); // lap=4s, split=5s
+    /// let sp2 = sw.split(); // split=5s, lap=4s
     /// ```
     pub fn start() -> Self {
         let now = Instant::now();
@@ -108,7 +109,7 @@ pub struct Split {
 }
 impl std::fmt::Display for Split {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "lap={:?}, split={:?}", self.lap, self.split)
+        write!(f, "split={:?}, lap={:?}", self.split, self.lap)
     }
 }
 
