@@ -5,10 +5,10 @@
 
 You often need a stopwatch to embed performance measuremet in the production code.
 This library implements a stopwatch just like the real one which equips
-suspend/resume functionality, which helps to skip code that shouldn't be included
+suspend/resume functionality, which helps to skip codes that shouldn't be included
 in the measurement.
 
-The stopwatch uses [quanta](https://github.com/metrics-rs/quanta) library there it can be built for WASM target.
+The stopwatch uses [quanta](https://github.com/metrics-rs/quanta) library therefore it can be built for WASM target.
 
 ## Example
 
