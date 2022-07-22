@@ -19,6 +19,21 @@ pub struct StopWatch {
     total_suspend: Duration,
 }
 impl StopWatch {
+    /// Start a stopwatch.
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use std::thread::sleep;
+    ///
+    /// let mut sw = stopwatch_rs::StopWatch::start();
+    /// sleep(Duration::from_secs(1));
+    /// let sp1 = sw.split(); // lap=1s, split=1s
+    /// sw.suspend();
+    /// sleep(Duration::from_secs(2));
+    /// sw.resume();
+    /// sleep(Duration::from_secs(4));
+    /// let sp2 = sw.split(); // lap=4s, split=5s
+    /// ```
     pub fn start() -> Self {
         let now = Instant::now();
         Self {
@@ -30,6 +45,7 @@ impl StopWatch {
             total_suspend: Duration::new(0, 0),
         }
     }
+    /// Temporarily suspend the stopwatch. The clock is suspended until it is resumed.
     pub fn suspend(&mut self) {
         if let Running {
             lap_start_time: start_time,
@@ -42,6 +58,7 @@ impl StopWatch {
             };
         }
     }
+    /// Resume the stopwatch.
     pub fn resume(&mut self) {
         if let Stopped {
             lap_start_time: start_time,
@@ -57,6 +74,7 @@ impl StopWatch {
             }
         }
     }
+    /// Consume the current state and return the split time and the lap time.
     pub fn split(&mut self) -> Split {
         match self.state {
             State::Running {
@@ -83,7 +101,9 @@ impl StopWatch {
     }
 }
 pub struct Split {
+    /// Time spent after the stopwatch's started.
     pub split: Duration,
+    /// Time spent between two splits.
     pub lap: Duration,
 }
 impl std::fmt::Display for Split {
