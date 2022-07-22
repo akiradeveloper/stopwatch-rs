@@ -1,5 +1,8 @@
 # stopwatch-rs
 
+[![Crates.io](https://img.shields.io/crates/v/stopwatch-rs.svg)](https://crates.io/crates/stopwatch-rs)
+[![documentation](https://docs.rs/stopwatch-rs/badge.svg)](https://docs.rs/stopwatch-rs)
+
 You often need a stopwatch to embed performance measuremet in the production code.
 This library implements a stopwatch just like the real one which equips
 suspend/resume functionality, which helps to skip code that shouldn't be included
